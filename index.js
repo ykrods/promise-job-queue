@@ -35,21 +35,19 @@ export class Queue {
 
     try {
       const result = await fn(...args);
-      deferred.resolve(result);
+      deferred.resolve([result, undefined]);
     } catch (error) {
-      // XXX: Which is preferred?
-      //      (since queue.add didn't fail, it doesn't feel right to reject it)
-      // deferred.reject(error);
-      deferred.resolve(error);
+      deferred.resolve([undefined, error]);
     } finally {
       this._workerCount--;
       this._kick();
     };
   }
+
   /**
    * wait until all queued items have been settled
    */
-  async wait() {
+  wait() {
     return Promise.allSettled(this._queue.map(q => q.deferred.promise));
   }
 }

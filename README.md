@@ -16,6 +16,6 @@ q.add(mytask, 1, 2);
 q.add(mytask, 2, 3);
 q.add(mytask, 3, 4);
 
-// Retrive result
-const result = await q.add(mytask, 1, 1);
+// Retrieve result
+const [result, error] = await q.add(mytask, 1, 1);
 ```

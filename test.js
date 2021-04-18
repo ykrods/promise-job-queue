@@ -78,7 +78,7 @@ test("Queue.add() with args", async() => {
     return a + b;
   }
 
-  const result = await q.add(task, 1, 2);
+  const [result, error] = await q.add(task, 1, 2);
   assert.equal(result, 3);
 });
 
@@ -87,9 +87,10 @@ test("Error task", async() => {
 
   let done = false;
 
-  q.add(async() => { throw "Error"; });
-  q.add(async() => { done = true; });
-  await q.wait();
+  const [result, error] = await q.add(async() => { throw "Error"; });
+  await q.add(async() => { done = true; });
+
+  assert.equal(error, "Error");
   assert.equal(done, true);
 });
 
