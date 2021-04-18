@@ -1,0 +1,19 @@
+{
+  "name": "promise-job-queue",
+  "version": "0.0.1",
+  "description": "[ES Module] Simple promise-based job queue",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "uvu"
+  },
+  "keywords": [
+    "Queue",
+    "ESModule"
+  ],
+  "author": "ykrods",
+  "license": "MIT",
+  "devDependencies": {
+    "uvu": "0.5.1"
+  }
+}
